@@ -12,7 +12,7 @@ namespace Parser.Test
 
         [TestCase("Olympics are starting soon; http://www.nbcolympics.com", new[] { "http://www.nbcolympics.com" })]
         [TestCase("@bob @john (success) such a cool feature; https://twitter.com/jdorfman/status/430511497475670016", new[] { "https://twitter.com/jdorfman/status/430511497475670016" })]
-        public async void TestCasePositive(string text, string[] expectedResults)
+        public async void TestCasePositiveMockRetriever(string text, string[] expectedResults)
         {
             var mock = new Mock<ITitleRetriever>(MockBehavior.Strict);
             foreach (var expectedResult in expectedResults)
@@ -26,6 +26,19 @@ namespace Parser.Test
             for (var i = 0; i < expectedResults.Length; i++)
             {
                 Assert.AreEqual(ExpectedTitle, result[i].title);
+                Assert.AreEqual(expectedResults[i], result[i].url);
+            }
+        }
+
+        [TestCase("Olympics are starting soon; http://www.nbco111lympics.com", new[] { "http://www.nbco111lympics.com" })]
+        [TestCase("@bob @john (success) such a cool feature; https://twitter.com/jdorfman/status/430511497475670016", new[] { "https://twitter.com/jdorfman/status/430511497475670016" })]
+        public async void TestCasePositiveRealRetriever(string text, string[] expectedResults)
+        {
+            var parser = new LinksParser(new WebsiteTitleRetriever());
+            var result = await parser.Parse(text);
+            Assert.AreEqual(expectedResults.Length, result.Length);
+            for (var i = 0; i < expectedResults.Length; i++)
+            {
                 Assert.AreEqual(expectedResults[i], result[i].url);
             }
         }
