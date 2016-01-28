@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-namespace Parser
+namespace Parser.Interface
 {
-    public interface IElementParser<T>
+    public interface IElementParser
     {
-        Task<T[]> Parse (string text);
+        Task<object[]> Parse (string text);
 
         string Name { get; }
     }

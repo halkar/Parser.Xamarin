@@ -1,7 +1,9 @@
-﻿namespace Parser
+﻿using System.Threading.Tasks;
+
+namespace Parser.Interface
 {
     public interface IParser
     {
-        string Parse (string text);
+        Task<string> Parse (string text);
     }
 }

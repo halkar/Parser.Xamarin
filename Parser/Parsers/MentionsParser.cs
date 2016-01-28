@@ -1,8 +1,9 @@
 ﻿using System.Text.RegularExpressions;
+using Parser.Interface;
 
-namespace Parser
+namespace Parser.Parsers
 {
-    public class MentionsParser : RegexParser, IElementParser<string>
+    public class MentionsParser : RegexParser, IElementParser
     {
         public MentionsParser () : base (new Regex (@"@(\w+)"))
         {

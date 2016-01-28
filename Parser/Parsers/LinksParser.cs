@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Parser.Data;
 using Parser.Interface;
+using Parser.Parsers.Interface;
 
-namespace Parser
+namespace Parser.Parsers
 {
-    public class LinksParser : IElementParser<Link>
+    public class LinksParser : IElementParser
     {
         private static readonly Regex Regex =
             new Regex(@"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)");
@@ -18,13 +20,13 @@ namespace Parser
             _titleRetriever = titleRetriever;
         }
 
-        public async Task<Link[]> Parse(string text)
+        public async Task<object[]> Parse(string text)
         {
             var links = await _baseParser.Parse(text);
             var list = new List<Link>();
             foreach (var link in links)
             {
-                list.Add(await GetTitle(link));
+                list.Add(await GetTitle((string) link));
             }
             return list.ToArray();
         }

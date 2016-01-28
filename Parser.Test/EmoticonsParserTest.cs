@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Parser.Parsers;
 
 namespace Parser.Test
 {

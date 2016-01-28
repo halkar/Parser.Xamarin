@@ -1,6 +1,10 @@
 ﻿using System;
-
+using Autofac;
+using Parser.Interface;
+using Parser.Parsers;
 using Xamarin.Forms;
+using XLabs.Ioc;
+using XLabs.Ioc.Autofac;
 
 namespace Parser.Xamarin
 {
@@ -24,7 +28,12 @@ namespace Parser.Xamarin
 
         protected override void OnStart ()
         {
-            // Handle when your app starts
+            var builder = new ContainerBuilder();
+            builder.RegisterType<EmoticonsParser>().As<IElementParser>();
+            builder.RegisterType<LinksParser>().As<IElementParser>();
+            builder.RegisterType<MentionsParser>().As<IElementParser>();
+            IResolver autofacResolver = new AutofacResolver(builder.Build());
+            Resolver.SetResolver(autofacResolver);
         }
 
         protected override void OnSleep ()

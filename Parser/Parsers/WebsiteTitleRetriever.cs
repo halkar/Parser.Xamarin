@@ -2,9 +2,9 @@
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Parser.Interface;
+using Parser.Parsers.Interface;
 
-namespace Parser
+namespace Parser.Parsers
 {
     public class WebsiteTitleRetriever : ITitleRetriever
     {

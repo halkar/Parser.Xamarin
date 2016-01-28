@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Parser.Interface
+namespace Parser.Parsers.Interface
 {
     public interface ITitleRetriever
     {

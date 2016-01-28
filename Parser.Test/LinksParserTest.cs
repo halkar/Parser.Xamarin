@@ -1,7 +1,10 @@
 ﻿using NUnit.Framework;
 using System.Threading.Tasks;
 using Moq;
+using Parser.Data;
 using Parser.Interface;
+using Parser.Parsers;
+using Parser.Parsers.Interface;
 
 namespace Parser.Test
 {
@@ -25,8 +28,8 @@ namespace Parser.Test
             Assert.AreEqual(expectedResults.Length, result.Length);
             for (var i = 0; i < expectedResults.Length; i++)
             {
-                Assert.AreEqual(ExpectedTitle, result[i].title);
-                Assert.AreEqual(expectedResults[i], result[i].url);
+                Assert.AreEqual(ExpectedTitle, ((Link)result[i]).title);
+                Assert.AreEqual(expectedResults[i], ((Link)result[i]).url);
             }
         }
 
@@ -39,7 +42,7 @@ namespace Parser.Test
             Assert.AreEqual(expectedResults.Length, result.Length);
             for (var i = 0; i < expectedResults.Length; i++)
             {
-                Assert.AreEqual(expectedResults[i], result[i].url);
+                Assert.AreEqual(expectedResults[i], ((Link)result[i]).url);
             }
         }
     }

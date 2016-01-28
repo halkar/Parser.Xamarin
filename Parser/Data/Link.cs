@@ -1,4 +1,4 @@
-﻿namespace Parser
+﻿namespace Parser.Data
 {
     public class Link
     {

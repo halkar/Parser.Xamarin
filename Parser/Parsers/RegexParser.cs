@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Parser
+namespace Parser.Parsers
 {
     public class RegexParser
     {
@@ -20,7 +20,7 @@ namespace Parser
         {
         }
 
-        public virtual async Task<string[]> Parse(string text)
+        public virtual async Task<object[]> Parse(string text)
         {
             var matchCollection = _regex.Matches(text);
             return matchCollection
