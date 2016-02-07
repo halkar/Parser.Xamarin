@@ -10,6 +10,7 @@ namespace Parser.Parsers
         }
 
         public string Name => "mention";
+        public int Order => 100;
     }
 }
 

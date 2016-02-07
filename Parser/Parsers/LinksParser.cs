@@ -31,7 +31,13 @@ namespace Parser.Parsers
             return list.ToArray();
         }
 
+        public void Remove(ref string text)
+        {
+            _baseParser.Remove(ref text);
+        }
+
         public string Name => "links";
+        public int Order => 1;
 
         private async Task<Link> GetTitle(string link)
         {

@@ -23,11 +23,17 @@ namespace Parser.Parsers
         public virtual async Task<object[]> Parse(string text)
         {
             var matchCollection = _regex.Matches(text);
-            return matchCollection
+            var result = matchCollection
                 .Cast<Match>()
                 .Where(match => match.Success)
                 .Select(_selector)
                 .ToArray();
+            return result;
+        }
+
+        public void Remove(ref string text)
+        {
+            text = _regex.Replace(text, "");
         }
     }
 }
