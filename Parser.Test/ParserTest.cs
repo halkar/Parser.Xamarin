@@ -14,6 +14,7 @@ namespace Parser.Test
         [TestCase("Good morning! (megusta) (coffee)", "{\"emoticons\":[\"megusta\",\"coffee\"]}")]
         [TestCase("@bob @john (success) such a cool feature; https://twitter.com/jdorfman/status/430511497475670016", "{\"links\":[{\"url\":\"https://twitter.com/jdorfman/status/430511497475670016\",\"title\":null}],\"emoticons\":[\"success\"],\"mention\":[\"bob\",\"john\"]}")]
         [TestCase("Olympics are starting soon; http://www.nbcolympics.com", "{\"links\":[{\"url\":\"http://www.nbcolympics.com\",\"title\":null}]}")]
+        [TestCase("http://login@pass:testurl.com", "{\"links\":[{\"url\":\"http://login@pass:testurl.com\",\"title\":null}]}")]
         public async void TestCasePositive(string text, string expectedResult)
         {
             var mockRetriever = new Mock<ITitleRetriever>(MockBehavior.Strict);

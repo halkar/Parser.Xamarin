@@ -22,6 +22,7 @@ namespace Parser
             foreach (var parser in _parsers.OrderBy(p => p.Order))
             {
                 var data = await parser.Parse(text);
+                text = parser.Remove(text);
                 if (data.Length > 0)
                 {
                     root[parser.Name] = data;

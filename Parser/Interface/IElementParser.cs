@@ -6,7 +6,7 @@ namespace Parser.Interface
     {
         Task<object[]> Parse (string text);
 
-        void Remove(ref string text);
+        string Remove(string text);
 
         string Name { get; }
 

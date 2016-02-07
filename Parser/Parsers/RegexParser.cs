@@ -31,9 +31,9 @@ namespace Parser.Parsers
             return result;
         }
 
-        public void Remove(ref string text)
+        public string Remove(string text)
         {
-            text = _regex.Replace(text, "");
+            return_regex.Replace(text, "");
         }
     }
 }

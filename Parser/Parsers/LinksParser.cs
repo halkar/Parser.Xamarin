@@ -31,9 +31,9 @@ namespace Parser.Parsers
             return list.ToArray();
         }
 
-        public void Remove(ref string text)
+        public string Remove(string text)
         {
-            _baseParser.Remove(ref text);
+            return _baseParser.Remove(text);
         }
 
         public string Name => "links";
