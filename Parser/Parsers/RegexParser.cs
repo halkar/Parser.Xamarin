@@ -10,30 +10,30 @@ namespace Parser.Parsers
         private readonly Regex _regex;
         private readonly Func<Match, string> _selector;
 
-        public RegexParser(Regex regex, Func<Match, string> selector)
+        public RegexParser (Regex regex, Func<Match, string> selector)
         {
             _regex = regex;
             _selector = selector;
         }
 
-        public RegexParser(Regex regex) : this(regex, match => match.Groups[1].Value)
+        public RegexParser (Regex regex) : this (regex, match => match.Groups [1].Value)
         {
         }
 
-        public virtual async Task<object[]> Parse(string text)
+        public virtual async Task<object[]> Parse (string text)
         {
-            var matchCollection = _regex.Matches(text);
+            var matchCollection = _regex.Matches (text);
             var result = matchCollection
-                .Cast<Match>()
-                .Where(match => match.Success)
-                .Select(_selector)
-                .ToArray();
+                .Cast<Match> ()
+                .Where (match => match.Success)
+                .Select (_selector)
+                .ToArray ();
             return result;
         }
 
-        public string Remove(string text)
+        public string Remove (string text)
         {
-            return_regex.Replace(text, "");
+            return _regex.Replace (text, "");
         }
     }
 }
