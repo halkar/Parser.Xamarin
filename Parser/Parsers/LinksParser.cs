@@ -22,11 +22,11 @@ namespace Parser.Parsers
 
         public async Task<object[]> Parse(string text)
         {
-            var links = await _baseParser.Parse(text);
+            var links = _baseParser.Parse(text);
             var list = new List<Link>();
             foreach (var link in links)
             {
-                list.Add(await GetTitle((string) link));
+                list.Add(await GetTitle(link));
             }
             return list.ToArray();
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Parser.Parsers
 {
@@ -10,30 +9,28 @@ namespace Parser.Parsers
         private readonly Regex _regex;
         private readonly Func<Match, string> _selector;
 
-        public RegexParser (Regex regex, Func<Match, string> selector)
+        public RegexParser(Regex regex, Func<Match, string> selector)
         {
             _regex = regex;
             _selector = selector;
         }
 
-        public RegexParser (Regex regex) : this (regex, match => match.Groups [1].Value)
+        public RegexParser(Regex regex) : this(regex, match => match.Groups[1].Value)
         {
         }
-
-        public virtual async Task<object[]> Parse (string text)
+            
+        public string[] Parse(string text)
         {
-            var matchCollection = _regex.Matches (text);
-            var result = matchCollection
-                .Cast<Match> ()
-                .Where (match => match.Success)
-                .Select (_selector)
-                .ToArray ();
-            return result;
+            return _regex.Matches(text)
+                .Cast<Match>()
+                .Where(match => match.Success)
+                .Select(_selector)
+                .ToArray();
         }
 
-        public string Remove (string text)
+        public string Remove(string text)
         {
-            return _regex.Replace (text, "");
+            return _regex.Replace(text, "");
         }
     }
 }
