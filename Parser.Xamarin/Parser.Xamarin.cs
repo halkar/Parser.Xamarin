@@ -6,34 +6,18 @@ using Xamarin.Forms;
 using XLabs.Ioc;
 using XLabs.Ioc.Autofac;
 
-namespace Parser.Xamarin
+namespace Parser
 {
     public class App : Application
     {
         public App ()
         {
             // The root page of your application
-            MainPage = new ContentPage {
-                Content = new StackLayout {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            XAlign = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
-                    }
-                }
-            };
+            MainPage = new global::Parser.MainPage ();
         }
 
         protected override void OnStart ()
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterType<EmoticonsParser>().As<IElementParser>();
-            builder.RegisterType<LinksParser>().As<IElementParser>();
-            builder.RegisterType<MentionsParser>().As<IElementParser>();
-            IResolver autofacResolver = new AutofacResolver(builder.Build());
-            Resolver.SetResolver(autofacResolver);
         }
 
         protected override void OnSleep ()
